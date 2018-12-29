@@ -561,6 +561,6 @@ public interface StateListener {
 
 ## 后记
 
-> 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-remoting/dubbo-remoting-netty4/src/main/java/com/alibaba/dubbo/remoting/transport/netty4
+> 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-remoting/dubbo-remoting-zookeeper/src/main/java/com/alibaba/dubbo/remoting/zookeeper
 
 该文章讲解了基于zookeeper的来实现的远程通信、介绍dubbo-remoting-zookeeper内的源码解析，关键需要对zookeeper有所了解。该篇之后，远程通讯的源码解析就先到这里了，其实大家会发现，如果能够对讲解api系列的文章了解透了，那么后面的文章九很简单，就好像轨道铺好，可以直接顺着轨道往后，根本没有阻碍。接下来我将开始对rpc模块进行讲解。
