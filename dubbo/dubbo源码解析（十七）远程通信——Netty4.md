@@ -514,4 +514,4 @@ private ByteBuf buffer;
 
 > 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-remoting/dubbo-remoting-netty4/src/main/java/com/alibaba/dubbo/remoting/transport/netty4
 
-该文章讲解了基于netty4的来实现的远程通信、介绍dubbo-remoting-netty4内的源码解析，关键需要对netty4有所了解。下一篇我会讲解基于p2p形式实现远程通信部分。
+该文章讲解了基于netty4的来实现的远程通信、介绍dubbo-remoting-netty4内的源码解析，关键需要对netty4有所了解。下一篇我会讲解基于zookeeper实现远程通信部分。
