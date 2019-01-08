@@ -570,23 +570,23 @@ private final AtomicLong total = new AtomicLong();
  */
 private final AtomicInteger failed = new AtomicInteger();
 /**
- * 总计过期个数
+ * 总调用时长
  */
 private final AtomicLong totalElapsed = new AtomicLong();
 /**
- * 失败的累计值
+ * 总调用失败时长
  */
 private final AtomicLong failedElapsed = new AtomicLong();
 /**
- * 最大火气的累计值
+ * 最大调用时长
  */
 private final AtomicLong maxElapsed = new AtomicLong();
 /**
- * 最大失败累计值
+ * 最大调用失败时长
  */
 private final AtomicLong failedMaxElapsed = new AtomicLong();
 /**
- * 成功最大累计值
+ * 最大调用成功时长
  */
 private final AtomicLong succeededMaxElapsed = new AtomicLong();
 
@@ -643,15 +643,15 @@ private static void endCount(RpcStatus status, long elapsed, boolean succeeded) 
     status.active.decrementAndGet();
     // 总计数器加1
     status.total.incrementAndGet();
-    // 过期的计数器加上过期个数
+    // 总调用时长加上调用时长
     status.totalElapsed.addAndGet(elapsed);
-    // 如果最大的过期数小于elapsed，则设置最大过期数
+    // 如果最大调用时长小于elapsed，则设置最大调用时长
     if (status.maxElapsed.get() < elapsed) {
         status.maxElapsed.set(elapsed);
     }
     // 如果rpc调用成功
     if (succeeded) {
-        // 如果成功的最大值小于elapsed，则设置成功最大值
+        // 如果成最大调用成功时长小于elapsed，则设置最大调用成功时长
         if (status.succeededMaxElapsed.get() < elapsed) {
             status.succeededMaxElapsed.set(elapsed);
         }
@@ -660,7 +660,7 @@ private static void endCount(RpcStatus status, long elapsed, boolean succeeded) 
         status.failed.incrementAndGet();
         // 失败的过期数加上elapsed
         status.failedElapsed.addAndGet(elapsed);
-        // 失败最大值小于elapsed，则设置失败最大值
+        // 总调用失败时长小于elapsed，则设置总调用失败时长
         if (status.failedMaxElapsed.get() < elapsed) {
             status.failedMaxElapsed.set(elapsed);
         }
