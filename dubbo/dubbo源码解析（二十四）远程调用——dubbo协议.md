@@ -507,6 +507,7 @@ private ExchangeServer createServer(URL url) {
     }
     return server;
 }
+
 ```
 
 该方法就是根据url携带的远程通信实现方法来创建一个服务器对象。
@@ -552,6 +553,7 @@ private void optimizeSerialization(URL url) throws RpcException {
         throw new RpcException("Cannot instantiate the serialization optimizer class: " + className, e);
     }
 }
+
 ```
 
 该方法是把序列化的类放入到集合，以便进行序列化
@@ -569,6 +571,7 @@ public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException {
     invokers.add(invoker);
     return invoker;
 }
+
 ```
 
 该方法是服务引用，其中就是新建一个DubboInvoker对象后把它放入到集合。
@@ -601,6 +604,7 @@ private ExchangeClient[] getClients(URL url) {
     }
     return clients;
 }
+
 ```
 
 该方法是获得客户端集合的方法，分为共享客户端和非共享客户端。共享客户端是共用同一个连接，非共享客户端是每个客户端都有自己的一个连接。
@@ -643,6 +647,7 @@ private ExchangeClient getSharedClient(URL url) {
         return client;
     }
 }
+
 ```
 
 该方法是获得分享的客户端连接。
@@ -684,6 +689,7 @@ private ExchangeClient initClient(URL url) {
     }
     return client;
 }
+
 ```
 
 该方法是新建一个客户端连接
@@ -740,6 +746,7 @@ public void destroy() {
     stubServiceMethodsMap.clear();
     super.destroy();
 }
+
 ```
 
 该方法是销毁的方法重写。
@@ -763,6 +770,7 @@ private final String serviceKey;
  * 当前的客户端
  */
 private final ExchangeClient currentClient;
+
 ```
 
 #### 2.doInvoke
@@ -801,6 +809,7 @@ protected Result doInvoke(Invocation invocation) throws Throwable {
         throw new RpcException(e.getMessage(), e);
     }
 }
+
 ```
 
 该方法是在invoker调用的时候对发送请求消息进行了包装。
@@ -842,6 +851,7 @@ private Request request;
  * 是否解码
  */
 private volatile boolean hasDecoded;
+
 ```
 
 #### 2.decode
@@ -943,6 +953,7 @@ public Object decode(Channel channel, InputStream input) throws IOException {
     }
     return this;
 }
+
 ```
 
 该方法就是处理Invocation内数据的逻辑，其中主要是做了序列化和解码。把读取出来的设置放入对对应位置传递给后面的调用。
@@ -985,6 +996,7 @@ private Invocation invocation;
  * 是否解码
  */
 private volatile boolean hasDecoded;
+
 ```
 
 #### 2.decode
@@ -1091,6 +1103,7 @@ public void decode() throws Exception {
         }
     }
 }
+
 ```
 
 该方法是对响应结果的解码，其中根据不同的返回结果来对RpcResult设置不同的值。
@@ -1137,6 +1150,7 @@ private volatile ExchangeClient client;
  * 错误次数
  */
 private AtomicLong warningcount = new AtomicLong(0);
+
 ```
 
 可以看到有属性ExchangeClient client，该类中很多方法就直接调用了client的方法。
@@ -1154,6 +1168,7 @@ public LazyConnectExchangeClient(URL url, ExchangeHandler requestHandler) {
     // 默认没有错误
     this.requestWithWarning = url.getParameter(REQUEST_WITH_WARNING_KEY, false);
 }
+
 ```
 
 #### 3.initClient
@@ -1179,6 +1194,7 @@ private void initClient() throws RemotingException {
         connectLock.unlock();
     }
 }
+
 ```
 
 该方法是初始化客户端的方法。
@@ -1192,6 +1208,7 @@ public ResponseFuture request(Object request) throws RemotingException {
     initClient();
     return client.request(request);
 }
+
 ```
 
 该方法在调用client.request前调用了前面两个方法，initClient我在上面讲到了，就是用来初始化客户端的。而warning是用来报错的。
@@ -1208,6 +1225,7 @@ private void warning(Object request) {
         warningcount.incrementAndGet();
     }
 }
+
 ```
 
 每5000次记录报错一次。
@@ -1237,6 +1255,7 @@ private final ConcurrentMap<String, LazyConnectExchangeClient> ghostClientMap;
  * 客户端对象
  */
 private ExchangeClient client;
+
 ```
 
 #### 2.replaceWithLazyClient
@@ -1265,6 +1284,7 @@ private LazyConnectExchangeClient replaceWithLazyClient() {
     }
     return gclient;
 }
+
 ```
 
 该方法是用延迟连接替代，该方法在close方法中被调用。
@@ -1283,6 +1303,7 @@ public void close(int timeout) {
         client = replaceWithLazyClient();
     }
 }
+
 ```
 
 ### （九）FutureAdapter
@@ -1320,6 +1341,7 @@ private static final byte CALLBACK_DESTROY = 0x2;
  * 回调参数key
  */
 private static final String INV_ATT_CALLBACK_KEY = "sys_callback_arg-";
+
 ```
 
 #### 2.encodeInvocationArgument
@@ -1349,6 +1371,7 @@ public static Object encodeInvocationArgument(Channel channel, RpcInvocation inv
             return args[paraIndex];
     }
 }
+
 ```
 
 该方法是对会话域的信息进行编码。
@@ -1392,6 +1415,7 @@ public static Object decodeInvocationArgument(Channel channel, RpcInvocation inv
             return inObject;
     }
 }
+
 ```
 
 该方法是对会话域内的信息进行解码。
@@ -1418,6 +1442,7 @@ private static byte isCallBack(URL url, String methodName, int argIndex) {
     }
     return isCallback;
 }
+
 ```
 
 该方法是根据url携带的参数设置回调的标志，以供执行不同的编解码逻辑。
@@ -1493,6 +1518,7 @@ private static String exportOrunexportCallbackService(Channel channel, URL url, 
     }
     return String.valueOf(instid);
 }
+
 ```
 
 该方法是在客户端侧暴露服务和取消暴露服务。
@@ -1567,6 +1593,7 @@ private static Object referOrdestroyCallbackService(Channel channel, URL url, Cl
     }
     return proxy;
 }
+
 ```
 
 该方法是在服务端侧进行服务引用或者销毁回调服务。
@@ -1619,6 +1646,7 @@ public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
  */
 public static final Class<?>[] EMPTY_CLASS_ARRAY = new Class<?>[0];
 private static final Logger log = LoggerFactory.getLogger(DubboCodec.class);
+
 ```
 
 #### 2.decodeBody
@@ -1731,6 +1759,7 @@ protected Object decodeBody(Channel channel, InputStream is, byte[] header) thro
         return req;
     }
 }
+
 ```
 
 该方法是对request和response进行解码，用位运算来进行解码，其中的逻辑跟我在[ 《dubbo源码解析（十）远程通信——Exchange层》](https://segmentfault.com/a/1190000017467343)中讲到的编解码器逻辑差不多。
@@ -1762,6 +1791,7 @@ protected void encodeRequestData(Channel channel, ObjectOutput out, Object data,
     // 输出附加值
     out.writeObject(inv.getAttachments());
 }
+
 ```
 
 该方法是对请求数据的编码。
@@ -1799,6 +1829,7 @@ protected void encodeResponseData(Channel channel, ObjectOutput out, Object data
         out.writeObject(result.getAttachments());
     }
 }
+
 ```
 
 该方法是对响应数据的编码。
@@ -1871,6 +1902,7 @@ public final class DubboCountCodec implements Codec2 {
     }
 
 }
+
 ```
 
 ### （十三）TraceFilter
@@ -1894,6 +1926,7 @@ private static final String TRACE_COUNT = "trace.count";
  * 通道集合
  */
 private static final ConcurrentMap<String, Set<Channel>> tracers = new ConcurrentHashMap<String, Set<Channel>>();
+
 ```
 
 #### 2.addTracer
@@ -1915,6 +1948,7 @@ public static void addTracer(Class<?> type, String method, Channel channel, int 
     }
     channels.add(channel);
 }
+
 ```
 
 该方法是对某一个通道进行跟踪，把现在的调用数量放到属性里面
@@ -1934,6 +1968,7 @@ public static void removeTracer(Class<?> type, String method, Channel channel) {
         channels.remove(channel);
     }
 }
+
 ```
 
 该方法是移除通道的跟踪。
@@ -2006,11 +2041,12 @@ public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcExcept
     }
     return result;
 }
+
 ```
 
 该方法是当服务被调用时，进行跟踪或者取消跟踪的处理逻辑，是核心的功能增强逻辑。
 
-### （十三）FutureFilter
+### （十四）FutureFilter
 
 该类是处理异步和同步调用结果的过滤器。
 
@@ -2035,6 +2071,7 @@ public Result invoke(final Invoker<?> invoker, final Invocation invocation) thro
     }
     return result;
 }
+
 ```
 
 该方法中根据是否为异步调用来分别执行asyncCallback和syncCallback方法。
@@ -2052,6 +2089,7 @@ private void syncCallback(final Invoker<?> invoker, final Invocation invocation,
         fireReturnCallback(invoker, invocation, result.getValue());
     }
 }
+
 ```
 
 该方法是同步调用的返回结果处理，比较简单。
@@ -2231,11 +2269,12 @@ private void fireThrowCallback(final Invoker<?> invoker, final Invocation invoca
         logger.error(invocation.getMethodName() + ".call back method invoke error . callback method :" + onthrowMethod + ", url:" + invoker.getUrl(), exception);
     }
 }
+
 ```
 
 该方法是异常抛出时的结果处理。
 
-### （十四）ServerStatusChecker
+### （十五）ServerStatusChecker
 
 该类是对于服务状态的监控设置。
 
@@ -2277,9 +2316,10 @@ public class ServerStatusChecker implements StatusChecker {
     }
 
 }
+
 ```
 
-### （十五）ThreadPoolStatusChecker
+### （十六）ThreadPoolStatusChecker
 
 该类是对于线程池的状态进行监控。
 
@@ -2329,6 +2369,7 @@ public class ThreadPoolStatusChecker implements StatusChecker {
     }
 
 }
+
 ```
 
 逻辑比较简单，我就不赘述了。
