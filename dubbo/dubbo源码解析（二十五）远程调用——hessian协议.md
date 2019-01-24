@@ -369,4 +369,4 @@ private class HessianHandler implements HttpHandler {
 
 > 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-rpc/dubbo-rpc-hessian/src/main/java/com/alibaba/dubbo/rpc/protocol/hessian
 
-该文章讲解了远程调用中关于hessian协议的部分，内容比较简单，可以参考着官方文档了解一下。接下来我将开始对rpc模块的dubbo-rpc-dubbo关于Http协议部分进行讲解。
+该文章讲解了远程调用中关于hessian协议的部分，内容比较简单，可以参考着官方文档了解一下。接下来我将开始对rpc模块关于Http协议部分进行讲解。

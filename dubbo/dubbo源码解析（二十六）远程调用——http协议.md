@@ -280,4 +280,4 @@ private class InternalHandler implements HttpHandler {
 
 > 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-rpc/dubbo-rpc-http/src/main/java/com/alibaba/dubbo/rpc/protocol/http
 
-该文章讲解了远程调用中关于http协议的部分，内容比较简单，可以参考着官方文档了解一下。接下来我将开始对rpc模块的dubbo-rpc-dubbo关于injvm本地调用部分进行讲解。
+该文章讲解了远程调用中关于http协议的部分，内容比较简单，可以参考着官方文档了解一下。接下来我将开始对rpc模块关于injvm本地调用部分进行讲解。

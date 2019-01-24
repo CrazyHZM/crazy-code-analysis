@@ -2380,4 +2380,4 @@ public class ThreadPoolStatusChecker implements StatusChecker {
 
 > 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-rpc/dubbo-rpc-dubbo/src/main/java/com/alibaba/dubbo/rpc/protocol/dubbo
 
-该文章讲解了远程调用中关于dubbo协议的部分，dubbo协议是官方推荐使用的协议，并且对于telnet命令也做了很好的支持，要看懂这部分的逻辑，必须先对于之前的一些接口设计了解的很清楚。接下来我将开始对rpc模块的dubbo-rpc-dubbo关于hessian协议部分进行讲解。
+该文章讲解了远程调用中关于dubbo协议的部分，dubbo协议是官方推荐使用的协议，并且对于telnet命令也做了很好的支持，要看懂这部分的逻辑，必须先对于之前的一些接口设计了解的很清楚。接下来我将开始对rpc模块关于hessian协议部分进行讲解。
