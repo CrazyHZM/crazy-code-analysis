@@ -18,7 +18,11 @@ dubbo的集群涉及到以下几部分内容：
 
 以上几部分跟[《dubbo源码解析（一）Hello,Dubbo》](https://segmentfault.com/a/1190000016741532?share_user=1030000009586134)的"（二）dubbo-cluster——集群模块“介绍有些类似，这里再重新讲一遍是为了明确我接下来介绍集群模块的文章内容分布，也就是除了本文之外，我会用七篇文章来讲解以上的七部分，不管内容多少，只是为了把相应内容区分开来，能让读者有选择性的阅读。
 
-那么本文要来讲的无非就是这几部分内容的一个大概，并且介绍一下这几部分内容涉及到的接口。集群的包结构我就不在这里展示了,就是[《dubbo源码解析（一）Hello,Dubbo》](https://segmentfault.com/a/1190000016741532?share_user=1030000009586134)的"（二）dubbo-cluster——集群模块“中的图片。下面我们直接对应各个部分来介绍相应的接口源码。
+在官方网站上有一段介绍我觉得写的非常的好：
+
+集群工作过程可分为两个阶段，第一个阶段是在服务消费者初始化期间，集群 Cluster 实现类为服务消费者创建 Cluster Invoker 实例，即上图中的 merge 操作。第二个阶段是在服务消费者进行远程调用时。以 FailoverClusterInvoker 为例，该类型 Cluster Invoker 首先会调用 Directory 的 list 方法列举 Invoker 列表（可将 Invoker 简单理解为服务提供者）。Directory 的用途是保存 Invoker，可简单类比为 List\<invoker\>。其实现类 RegistryDirectory 是一个动态服务目录，可感知注册中心配置的变化，它所持有的 Inovker 列表会随着注册中心内容的变化而变化。每次变化后，RegistryDirectory 会动态增删 Inovker，并调用 Router 的 route 方法进行路由，过滤掉不符合路由规则的 Invoker。当 FailoverClusterInvoker 拿到 Directory 返回的 Invoker 列表后，它会通过 LoadBalance 从 Invoker 列表中选择一个 Inovker。最后 FailoverClusterInvoker 会将参数传给 LoadBalance 选择出的 Invoker 实例的 invoker 方法，进行真正的远程调用。
+
+本文要来讲的无非就是这几部分内容的一个大概，并且介绍一下这几部分内容涉及到的接口。集群的包结构我就不在这里展示了,就是[《dubbo源码解析（一）Hello,Dubbo》](https://segmentfault.com/a/1190000016741532?share_user=1030000009586134)的"（二）dubbo-cluster——集群模块“中的图片。下面我们直接对应各个部分来介绍相应的接口源码。
 
 ## 目录
 
