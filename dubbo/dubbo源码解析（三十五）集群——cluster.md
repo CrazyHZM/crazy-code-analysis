@@ -767,4 +767,5 @@ public class FailsafeClusterInvoker<T> extends AbstractClusterInvoker<T> {
 
 > 该部分相关的源码解析地址：https://github.com/CrazyHZM/incubator-dubbo/tree/analyze-2.6.x/dubbo-cluster/src/main/java/com/alibaba/dubbo/rpc/cluster/support
 
-该文章讲解了集群中关于cluster实现的部分，讲了几种调用方式和容错策略t。接下来我将开始对集群模块关于配置规则部分进行讲解。
+该文章讲解了集群中关于cluster实现的部分，讲了几种调用方式和容错策略。接下来我将开始对集群模块关于配置规则部分进行讲解。
+
