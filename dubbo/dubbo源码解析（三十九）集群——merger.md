@@ -1,6 +1,6 @@
 # 集群——merger
 
-> 目标：介绍dubbo中集群的配置规则，介绍dubbo-cluster下merger包的源码。
+> 目标：介绍dubbo中集群的分组聚合，介绍dubbo-cluster下merger包的源码。
 
 ## 前言
 
