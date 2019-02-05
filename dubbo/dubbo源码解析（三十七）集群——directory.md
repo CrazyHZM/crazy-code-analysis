@@ -1,4 +1,4 @@
-# 远程调用——directory
+# 集群——directory
 
 > 目标：介绍dubbo中集群的目录，介绍dubbo-cluster下directory包的源码。
 

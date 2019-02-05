@@ -1,4 +1,4 @@
-# 远程调用——configurator
+# 集群——configurator
 
 > 目标：介绍dubbo中集群的配置规则，介绍dubbo-cluster下configurator包的源码。
 
