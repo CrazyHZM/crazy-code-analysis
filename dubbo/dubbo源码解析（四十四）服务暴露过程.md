@@ -1163,7 +1163,7 @@ public ZookeeperClient createZookeeperClient(URL url) {
 
 可以参考[dubbo源码解析（十八）远程通信——Zookeeper》](https://segmentfault.com/a/1190000017565522)的（二）AbstractZookeeperClient中的源代码分析。createEphemeral()和createPersistent()是抽象方法，具体实现由子类完成，也就是CuratorZookeeperClient类。代码逻辑比较简单。我就不再赘述。到这里为止，服务也就注册完成。
 
-关于向注册中心进行订阅 override 数据的规则在最新版本有一些大变动，跟2.6.x及以前的都不一样。所以这部分内容在新特性中取讲解。
+关于向注册中心进行订阅 override 数据的规则在最新版本有一些大变动，跟2.6.x及以前的都不一样。所以这部分内容在新特性中去讲解。
 
 ## 后记
 
