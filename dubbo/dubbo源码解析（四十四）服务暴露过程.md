@@ -812,7 +812,7 @@ public static Wrapper getWrapper(Class<?> c) {
 
 ### 服务暴露
 
-服务导出分为暴露到本地 (JVM)，和暴露到远程。doExportUrlsFor1Protocol()方法分割线下半部分就是服务暴露的逻辑。根据scope的配置分为：
+服务暴露分为暴露到本地 (JVM)，和暴露到远程。doExportUrlsFor1Protocol()方法分割线下半部分就是服务暴露的逻辑。根据scope的配置分为：
 
 - scope = none，不暴露服务
 - scope != remote，暴露到本地
