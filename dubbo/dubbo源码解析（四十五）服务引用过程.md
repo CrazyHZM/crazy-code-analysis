@@ -10,6 +10,12 @@
 
 ![dubbo-refer](https://github.com/CrazyHZM/crazy-code-analysis/blob/master/dubbo/image/%E5%9B%9B%E5%8D%81%E4%BA%94/dubbo-refer.jpg?raw=true)
 
+大致可以分为三个步骤：
+
+1. 配置加载
+2. 创建invoker
+3. 创建服务接口代理类
+
 ### 引用起点
 
 dubbo服务的引用起点就类似于bean加载。dubbo中有一个类ReferenceBean，它实现了FactoryBean接口，继承了ReferenceConfig，所以ReferenceBean作为dubbo中能生产对象的工厂Bean，而我们要引用服务，也就是要有一个该服务的对象。
