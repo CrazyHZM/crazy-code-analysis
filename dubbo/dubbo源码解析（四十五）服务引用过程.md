@@ -723,4 +723,4 @@ public static Proxy getProxy(ClassLoader cl, Class<?>... ics) {
 
 > 参考官方文档：<https://dubbo.apache.org/zh-cn/docs/source_code_guide/refer-service.html>
 
-该文章讲解了dubbo的服务引用过程，下一篇就讲解2.7中异步化改造。
+该文章讲解了dubbo的服务引用过程，下一篇就讲解服务方法调用过程。
