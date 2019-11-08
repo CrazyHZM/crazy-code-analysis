@@ -186,7 +186,7 @@ github地址：https://github.com/apache/incubator-dubbo
 
 看看plugin的目录：
 
-![plugin目录](/Users/huazhongming/typora/dubbo源码解析/图片/一/plugin目录.png)
+![plugin目录](https://github.com/CrazyHZM/crazy-code-analysis/blob/master/dubbo/image/%E4%B8%80/plugin%E7%9B%AE%E5%BD%95.png?raw=true)
 
 1. dubbo-qos：提供了在线运维的命令。
 
@@ -227,3 +227,4 @@ github地址：https://github.com/apache/incubator-dubbo
 3. all/pow.xml：定义了dubbo的打包脚本，使用dubbo库的时候，需要引入改pom文件。
 
 4. dubbo-parent：是dubbo的父pom，dubbo的maven模块都会引入该pom文件。
+
